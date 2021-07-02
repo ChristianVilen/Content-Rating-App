@@ -1,26 +1,28 @@
 const express = require('express')
-const fs = require('fs')
-require('dotenv/config');
+require('dotenv/config')
+const cors = require('cors')
 
 const DataModel = require('./src/dataModel')
 
-const app = express();
-const port = 8000;
+const app = express()
+const port = 8000
 
-const database = require('./src/initDb');
-
+const database = require('./src/initDb')
+// Allow all cors
+app.use(cors())
+app.options('*', cors())
 // Body parser
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 // Routes
 app.get('/', async (req, res) => {
   try {
-    const data = await DataModel.find();
-    res.json(data);
+    const data = await DataModel.find()
+    res.json(data)
   } catch (err) {
-    res.json({message: err});
+    res.json({ message: err })
   }
-});
+})
 
 app.post('/', async (req, res) => {
   const data = new DataModel({
@@ -34,16 +36,16 @@ app.post('/', async (req, res) => {
   })
 
   try {
-    await data.save();
-    res.sendStatus(200);
+    await data.save()
+    res.sendStatus(200)
   } catch (err) {
-    res.json({message: err});
+    res.json({ message: err })
   }
 })
 
 // Connect to db
-database.attach();
+database.attach()
 
 app.listen(port, () => {
-  console.log(`Running on ${port} 🚀`);
-});
+  console.log(`Running on ${port} 🚀`)
+})
