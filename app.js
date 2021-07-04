@@ -43,6 +43,33 @@ app.post('/', async (req, res) => {
   }
 })
 
+app.put('/', async (req, res) => {
+  try {
+    const updatedData = await DataModel.findByIdAndUpdate(
+      req.query.param,
+      {
+        $set: {
+          id: req.body.id,
+          mediaType: req.body.mediaType,
+          title: req.body.title,
+          description: req.body.description,
+          source: req.body.source,
+          contentUrl: req.body.contentUrl,
+          previewUrl: req.body.previewUrl,
+          review: {
+            rating: req.body.review.rating,
+            reviewText: req.body.review.reviewText,
+          },
+        },
+      },
+      { new: true }
+    )
+    res.json(updatedData)
+  } catch (err) {
+    res.json({ message: err })
+  }
+})
+
 // Connect to db
 database.attach()
 

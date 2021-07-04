@@ -7,16 +7,13 @@ const ModalComponent = ({ props, isOpen }) => {
   const [reviewText, setReviewText] = useState('')
 
   const saveRatings = () => {
-    const review = {
+    console.log(props)
+    let review = {
       rating,
       reviewText,
     }
-    const data = {
-      ...props,
-      review,
-    }
 
-    updateData(data).then((r) => console.log(r))
+    updateData(props, review).then((r) => console.log('res', r))
   }
 
   return (
@@ -43,7 +40,7 @@ const ModalComponent = ({ props, isOpen }) => {
                   type="range"
                   min="1"
                   max="10"
-                  defaultValue="5"
+                  defaultValue={rating}
                   onChange={(e) => setRating(e.target.value)}
                 />
                 {rating}

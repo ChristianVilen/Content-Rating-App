@@ -23,10 +23,21 @@ const ContentComponent = ({ data, showButtons, textColor }) => {
 
   return (
     <div>
+      <div className="flex justify-between">
+        <h1 className={'text-lg font-semi-bold text-' + textColor}>
+          {data.title}
+        </h1>
+        <div>
+          {data.review ? (
+            <h2 className="text-lg text-white">
+              <i>Rating:</i> {data.review.rating}/10
+            </h2>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
       <div className="flex justify-center">{showMedia(data)}</div>
-      <h2 className={'text-xl font-semi-bold text-' + textColor}>
-        {data.title}
-      </h2>
       <hr />
       <div>
         <p
