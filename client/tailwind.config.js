@@ -17,14 +17,16 @@ module.exports = {
       white: colors.white,
       red: colors.rose,
       pink: colors.fuchsia,
-      primary: '#222831',
-      secondary: '#393E46',
-      turq: {
-        light: '#b3f1f5',
-        default: '#00ADB5',
-        dark: 'rgba(0,173,181,0.38)',
+      primary: {
+        light: '#3867a7',
+        default: '#294b7a',
+        dark: '#1d3557',
       },
-      background: '#EEEEEE',
+      secondary: {
+        light: '#48cae4',
+        default: '#00b4d8',
+        dark: '#0096c7',
+      },
     },
     fontFamily: {
       sans: [

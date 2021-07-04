@@ -1,53 +1,62 @@
 import React, { useState } from 'react'
+import ModalComponent from './modalComponent'
+import { shortenText } from '../utils/helpers'
 
-const ContentComponent = (props) => {
+const ContentComponent = ({ data, showButtons, textColor }) => {
   const [expandText, setExpandText] = useState(false)
-  const showMedia = (props) => {
-    if (props.mediaType === 'video') {
+  const [open, setOpen] = useState(false)
+  const showMedia = (data) => {
+    if (data.mediaType === 'video') {
       return (
         <div>
           <video controls>
-            <source src={props.contentUrl} type="video/mp4" />
+            <source src={data.contentUrl} type="video/mp4" />
           </video>
         </div>
       )
     }
 
-    return <img src={props.contentUrl} alt={props.description} />
+    return <img src={data.contentUrl} alt={data.description} />
   }
 
-  const shortenText = (text) => {
-    let maxLength = 100
-
-    if (!text) {
-      return
-    }
-
-    return text.length > maxLength
-      ? text.substr(0, maxLength - 1) + '...'
-      : text
-  }
+  const closeModal = () => setOpen(!open)
 
   return (
     <div>
-      <div className="flex justify-center">{showMedia(props.data)}</div>
-      <h2 className="text-white text-xl font-semi-bold">{props.data.title}</h2>
+      <div className="flex justify-center">{showMedia(data)}</div>
+      <h2 className={'text-xl font-semi-bold text-' + textColor}>
+        {data.title}
+      </h2>
       <hr />
-      <p
-        className="text-white text-sm cursor-pointer hover:opacity-75"
-        onClick={() => setExpandText(!expandText)}
-      >
-        {!expandText
-          ? shortenText(props.data.description)
-          : props.data.description}
-      </p>
-      <div className="flex justify-evenly mt-4">
-        <button className="text-sm bg-turq-default hover:bg-turq-light text-white p-1 rounded focus:ring-2 focus:ring-blue-600">
-          View Reviews
-        </button>
-        <button className="text-sm bg-turq-default hover:bg-turq-light text-white p-1 rounded focus:ring-2 focus:ring-blue-600">
-          Review Content
-        </button>
+      <div>
+        <p
+          className={
+            'text-sm cursor-pointer hover:opacity-75 text-' + textColor
+          }
+          onClick={() => setExpandText(!expandText)}
+        >
+          {!expandText ? shortenText(data.description) : data.description}
+        </p>
+      </div>
+      <>
+        {showButtons ? (
+          <div className="flex justify-evenly mt-4">
+            <button className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600">
+              View Reviews
+            </button>
+            <button
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+              onClick={() => setOpen(!open)}
+            >
+              Review Content
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
+      </>
+      <div>
+        {open ? <ModalComponent props={data} isOpen={closeModal} /> : <></>}
       </div>
     </div>
   )
