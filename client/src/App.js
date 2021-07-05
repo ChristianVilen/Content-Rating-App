@@ -48,7 +48,7 @@ function App() {
         state.map((item, key) => {
           return (
             <div
-              className="w-6/12 mt-3 mb-5 bg-primary-default bg-opacity-75 rounded p-2"
+              className="w-11/12 md:w-8/12 lg:w-6/12 mt-3 mb-5 bg-primary-default bg-opacity-75 rounded p-2"
               key={key}
             >
               <ContentComponent

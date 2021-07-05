@@ -5,7 +5,6 @@ import { shortenText } from '../utils/helpers'
 const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
   const [expandText, setExpandText] = useState(false)
   const [openReview, setOpenReview] = useState(false)
-  const [openReviews, setOpenReviews] = useState(false)
   const showMedia = (data) => {
     if (data.mediaType === 'video') {
       return (
@@ -51,13 +50,30 @@ const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
         </p>
       </div>
       <>
+        {data.review ? (
+          <div className="p-2">
+            <div>
+              <h4 className="text-lg text-white p-2">My review</h4>
+            </div>
+            <div className="flex justify-between w-full text-white border">
+              <div className="flex-auto text-sm p-2">
+                {data.review.reviewText}
+              </div>
+              <div className="flex-1 text-center">{data.review.rating}/10</div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </>
+      <>
         {isReview ? (
           <div className="flex justify-evenly mt-4">
             <button
               className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
               onClick={() => setOpenReview(!openReview)}
             >
-              Add a Review
+              {data.review ? 'Edit Review' : 'Add a Review'}
             </button>
           </div>
         ) : (

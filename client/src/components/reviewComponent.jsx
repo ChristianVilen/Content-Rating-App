@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ContentComponent from './contentComponent'
 import { updateData } from '../utils/requests'
 
 const ReviewComponent = ({ props, isOpen }) => {
@@ -16,64 +15,62 @@ const ReviewComponent = ({ props, isOpen }) => {
   }
 
   return (
-    <>
-      <div className="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none">
-        <div className="flex flex-col items-center p-8 bg-white shadow-md hover:shadow-lg rounded-2xl">
-          <div className="flex w-8/12">
-            <ContentComponent
-              data={props}
-              showButtons={false}
-              textColor={'black'}
-              isModal={true}
-            />
-          </div>
-          <div className="flex w-8/12 pt-6">
-            <div className="flex-auto text-left">
-              <div>
-                <label htmlFor="ratingSlider">Review 1-10</label>
-              </div>
-              <div>
-                <input
-                  className="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128"
-                  id="ratingSlider"
-                  type="range"
-                  min="1"
-                  max="10"
-                  defaultValue={rating}
-                  onChange={(e) => setRating(e.target.value)}
-                />
-                {rating}
-              </div>
+    <div className="flex justify-center mt-5 items-center outline-none focus:outline-none">
+      <div className="flex flex-col items-center w-full bg-primary-light shadow-md hover:shadow-lg rounded-2xl">
+        <div className="flex pt-5 pb-5">
+          <div className="flex-auto text-left text-white mr-5">
+            <div>
+              <label htmlFor="ratingSlider">Review 1-10</label>
             </div>
-            <div className="flex-auto text-right">
-              <div>
-                <textarea
-                  className="rounded-lg w-100 border"
-                  id="review"
-                  rows="3"
-                  placeholder="Teksti tulee tähän"
-                  onChange={(e) => setReviewText(e.target.value)}
-                />
-              </div>
+            <div>
+              <input
+                className="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128"
+                id="ratingSlider"
+                type="range"
+                min="1"
+                max="10"
+                defaultValue={rating}
+                onChange={(e) => setRating(e.target.value)}
+              />
+              {'  '}
+              {props.review ? props.review.rating : rating}
             </div>
           </div>
-          <div>
+          <div className="flex-auto text-right ml-5 sm:w-auto lg:w-80">
+            <div>
+              <textarea
+                className="text-xs w-full bg-gray-200 border rounded"
+                id="review"
+                rows="3"
+                value={props?.review?.reviewText}
+                placeholder="Review..."
+                onChange={(e) => setReviewText(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between w-8/12">
+          <div className="flex-auto text-center">
             <button
-              className="text-lg w-20 mr-3 bg-transparent hover:bg-secondary-default text-secondary-dark hover:text-white border border-blue-500 hover:border-transparent rounded"
               onClick={isOpen}
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
             >
-              Close
+              Cancel
             </button>
+          </div>
+          <div className="flex-auto text-center">
             <button
-              className="text-lg ml-3 w-20 bg-secondary-default hover:bg-secondary-dark text-white hover:text-white border border-blue-500 hover:border-transparent rounded"
-              onClick={() => saveRatings()}
+              onClick={() => {
+                saveRatings()
+              }}
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
             >
-              Rate
+              Submit
             </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
