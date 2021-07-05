@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import ModalComponent from './modalComponent'
+import ReviewComponent from './reviewComponent'
 import { shortenText } from '../utils/helpers'
 
-const ContentComponent = ({ data, showButtons, textColor }) => {
+const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
   const [expandText, setExpandText] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [openReview, setOpenReview] = useState(false)
+  const [openReviews, setOpenReviews] = useState(false)
   const showMedia = (data) => {
     if (data.mediaType === 'video') {
       return (
@@ -19,7 +20,7 @@ const ContentComponent = ({ data, showButtons, textColor }) => {
     return <img src={data.contentUrl} alt={data.description} />
   }
 
-  const closeModal = () => setOpen(!open)
+  const closeModal = () => setOpenReview(!openReview)
 
   return (
     <div>
@@ -50,16 +51,13 @@ const ContentComponent = ({ data, showButtons, textColor }) => {
         </p>
       </div>
       <>
-        {showButtons ? (
+        {isReview ? (
           <div className="flex justify-evenly mt-4">
-            <button className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600">
-              View Reviews
-            </button>
             <button
               className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpenReview(!openReview)}
             >
-              Review Content
+              Add a Review
             </button>
           </div>
         ) : (
@@ -67,7 +65,11 @@ const ContentComponent = ({ data, showButtons, textColor }) => {
         )}
       </>
       <div>
-        {open ? <ModalComponent props={data} isOpen={closeModal} /> : <></>}
+        {openReview ? (
+          <ReviewComponent props={data} isOpen={closeModal} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )

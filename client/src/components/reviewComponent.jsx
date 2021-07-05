@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import ContentComponent from './contentComponent'
 import { updateData } from '../utils/requests'
 
-const ModalComponent = ({ props, isOpen }) => {
+const ReviewComponent = ({ props, isOpen }) => {
   const [rating, setRating] = useState('5')
   const [reviewText, setReviewText] = useState('')
 
   const saveRatings = () => {
-    console.log(props)
     let review = {
       rating,
       reviewText,
@@ -63,7 +62,7 @@ const ModalComponent = ({ props, isOpen }) => {
               className="text-lg w-20 mr-3 bg-transparent hover:bg-secondary-default text-secondary-dark hover:text-white border border-blue-500 hover:border-transparent rounded"
               onClick={isOpen}
             >
-              Cancel
+              Close
             </button>
             <button
               className="text-lg ml-3 w-20 bg-secondary-default hover:bg-secondary-dark text-white hover:text-white border border-blue-500 hover:border-transparent rounded"
@@ -78,4 +77,4 @@ const ModalComponent = ({ props, isOpen }) => {
   )
 }
 
-export default ModalComponent
+export default ReviewComponent

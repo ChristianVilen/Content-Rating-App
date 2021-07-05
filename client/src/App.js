@@ -21,9 +21,9 @@ function App() {
 
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
-      <div className="flex justify-center">
-        <div className="mr-4">
-          <h1 className="text-lg text-white">Filters</h1>
+      <div className="flex justify-center mt-10">
+        <div className="mr-4 border">
+          <h1 className="text-lg text-white pl-2 pr-2">Filters</h1>
         </div>
         <div className="ml-4">
           <button
