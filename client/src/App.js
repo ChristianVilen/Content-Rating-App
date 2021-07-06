@@ -1,4 +1,3 @@
-import './App.css'
 import ContentComponent from './components/contentComponent'
 import { useEffect, useState } from 'react'
 import { getData, getTopTen } from './utils/requests'
