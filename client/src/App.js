@@ -5,13 +5,16 @@ import { getData, getTopTen } from './utils/requests'
 function App() {
   const [state, setState] = useState([])
   const [page, setPage] = useState(5)
+  const [isTopTen, setIsTopTen] = useState(false)
 
   useEffect(() => {
+    setIsTopTen(false)
     getData(page).then((r) => setState(r))
   }, [page])
 
   const getTop = () => {
     getTopTen().then((r) => setState(r))
+    setIsTopTen(true)
   }
 
   const updateState = (e) =>
@@ -20,26 +23,31 @@ function App() {
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
       <div className="flex justify-center mt-10 mb-5">
-        <div className="ml-4">
-          <button
-            onClick={() => getTop()}
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
-          >
-            Top 10
-          </button>
-        </div>
-        <div className="ml-4">
+        <div className="mr-3">
           <button
             onClick={() => {
               getData(page).then((r) => setState(r))
+              setIsTopTen(false)
             }}
             className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
           >
             Show all
           </button>
         </div>
+        <div className="ml-3">
+          <button
+            onClick={() => getTop()}
+            className={
+              isTopTen
+                ? 'bg-primary-dark text-sm hover:bg-secondary-dark text-white p-2 rounded ring-2 focus:ring-blue-600'
+                : 'bg-secondary-default text-sm hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600'
+            }
+          >
+            Top 10
+          </button>
+        </div>
       </div>
-      {state ? (
+      {state.length ? (
         state.map((item, key) => {
           return (
             <div
@@ -61,7 +69,8 @@ function App() {
           <button
             className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
             onClick={() => {
-              getData().then((r) => setState(r))
+              getData(5).then((r) => setState(r))
+              setIsTopTen(false)
             }}
           >
             Reload
