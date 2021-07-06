@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const apiUrl = 'https://gentle-bastion-17047.herokuapp.com/'
+//const apiUrl = 'https://gentle-bastion-17047.herokuapp.com/'
+const apiUrl = 'http://localhost:8000/'
 
 export const getData = async (page) => {
   return await axios
