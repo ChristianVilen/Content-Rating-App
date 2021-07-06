@@ -10,7 +10,7 @@ const DataSchema = new mongoose.Schema({
   contentUrl: String,
   previewUrl: String,
   review: {
-    rating: String,
+    rating: Number,
     reviewText: String,
   },
 })

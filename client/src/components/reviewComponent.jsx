@@ -10,7 +10,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
     if (props.review !== undefined) {
       setRating(props.review.rating)
     } else {
-      setRating('5')
+      setRating(5)
     }
   }, [props.review])
 
@@ -92,7 +92,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
                     ? null
                     : props.review.rating
                 }
-                onChange={(e) => setRating(e.target.value)}
+                onChange={(e) => setRating(parseInt(e.target.value))}
               />
               {'  '}
               {rating}
