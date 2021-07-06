@@ -19,14 +19,11 @@ function App() {
 
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
-      <div className="flex justify-center mt-10">
-        <div className="mr-4 border">
-          <h1 className="text-lg text-white pl-2 pr-2">Filters</h1>
-        </div>
+      <div className="flex justify-center mt-10 mb-5">
         <div className="ml-4">
           <button
             onClick={() => getTop()}
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
           >
             Top 10
           </button>
@@ -36,7 +33,7 @@ function App() {
             onClick={() => {
               getData(page).then((r) => setState(r))
             }}
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
           >
             Show all
           </button>
@@ -62,7 +59,7 @@ function App() {
         <div>
           <p className="text-white">No data</p>
           <button
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
             onClick={() => {
               getData().then((r) => setState(r))
             }}
@@ -73,7 +70,7 @@ function App() {
       )}
       <div className="p-6">
         <button
-          className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+          className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
           onClick={() => setPage(page + 5)}
         >
           Load more

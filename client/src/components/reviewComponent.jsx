@@ -22,7 +22,10 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
 
     updateData(props, review)
       .then((r) => {
-        setRequestResult({ success: 'success', r })
+        setRequestResult({ success: 'success' })
+        setReviewText('')
+        setRating(null)
+        isOpen()
         updateStateData(r)
       })
       .catch((e) => setRequestResult({ err: 'Something went wrong', e }))
@@ -32,20 +35,20 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
     if (requestResult.noReq) {
       return (
         <>
-          <div className="flex-auto text-center">
+          <div className="flex-auto text-center mb-4">
             <button
               onClick={isOpen}
-              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
             >
               Cancel
             </button>
           </div>
-          <div className="flex-auto text-center">
+          <div className="flex-auto text-center mb-4">
             <button
               onClick={() => {
                 saveRatings()
               }}
-              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
             >
               Submit
             </button>
@@ -54,22 +57,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
       )
     }
 
-    if (requestResult.success) {
-      return (
-        <>
-          <div className="flex-auto text-center">
-            <button
-              onClick={isOpen}
-              className="text-sm bg-green-600 hover:bg-green-900 text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
-            >
-              Review submitted, close
-            </button>
-          </div>
-        </>
-      )
-    }
-
-    if (requestResult.error) return <div>error</div>
+    if (requestResult.error) return <div>An error occurred</div>
   }
 
   return (
