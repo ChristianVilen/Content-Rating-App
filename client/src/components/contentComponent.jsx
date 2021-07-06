@@ -14,7 +14,7 @@ const ContentComponent = ({
     if (data.mediaType === 'video') {
       return (
         <div>
-          <video controls>
+          <video controls poster={data.previewUrl}>
             <source src={data.contentUrl} type="video/mp4" />
           </video>
         </div>
