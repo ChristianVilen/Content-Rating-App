@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // Routes
 app.get('/', async (req, res) => {
+  let limit = req.query.page
   try {
-    const data = await DataModel.find()
+    const data = await DataModel.find().limit(limit * 10)
     res.json(data)
   } catch (err) {
     res.json({ message: err })

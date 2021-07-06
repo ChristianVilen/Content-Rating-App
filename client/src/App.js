@@ -5,12 +5,14 @@ import { getData } from './utils/requests'
 
 function App() {
   const [state, setState] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    getData().then((r) => setState(r))
-  }, [])
+    getData(page).then((r) => setState(r))
+  }, [page])
 
-  const filterHandler = () => {
+  // todo: move to backend
+  const getTop = () => {
     const content = state.filter((item) => item.review)
     content.sort((a, b) => {
       return b.review.rating - a.review.rating
@@ -18,6 +20,9 @@ function App() {
 
     return setState(content.slice(0, 10))
   }
+
+  const updateState = (e) =>
+    setState(state.map((item) => (item.id === e.id ? { ...item, ...e } : item)))
 
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
@@ -27,7 +32,7 @@ function App() {
         </div>
         <div className="ml-4">
           <button
-            onClick={() => filterHandler()}
+            onClick={() => getTop()}
             className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
           >
             Top 10
@@ -55,6 +60,7 @@ function App() {
                 data={item}
                 showButtons={true}
                 textColor={'white'}
+                updatedItem={updateState}
               />
             </div>
           )
@@ -72,6 +78,14 @@ function App() {
           </button>
         </div>
       )}
+      <div>
+        <button
+          className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
+          onClick={() => setPage(page + 1)}
+        >
+          Load more
+        </button>
+      </div>
     </div>
   )
 }

@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import ReviewComponent from './reviewComponent'
 import { shortenText } from '../utils/helpers'
 
-const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
+const ContentComponent = ({
+  data,
+  showButtons: isReview,
+  textColor,
+  updatedItem,
+}) => {
   const [expandText, setExpandText] = useState(false)
   const [openReview, setOpenReview] = useState(false)
   const showMedia = (data) => {
@@ -20,6 +25,9 @@ const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
   }
 
   const closeModal = () => setOpenReview(!openReview)
+  const updateData = (event) => {
+    updatedItem(event)
+  }
 
   return (
     <div>
@@ -82,7 +90,11 @@ const ContentComponent = ({ data, showButtons: isReview, textColor }) => {
       </>
       <div>
         {openReview ? (
-          <ReviewComponent props={data} isOpen={closeModal} />
+          <ReviewComponent
+            props={data}
+            isOpen={closeModal}
+            updateStateData={updateData}
+          />
         ) : (
           <></>
         )}

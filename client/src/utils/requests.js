@@ -2,10 +2,16 @@ import axios from 'axios'
 
 const apiUrl = 'http://localhost:8000/'
 
-export const getData = async () => {
+export const getData = async (page) => {
   return await axios
-    .get(apiUrl)
-    .then((res) => res.data)
+    .get(apiUrl, {
+      params: {
+        page,
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
     .catch((err) => console.error(err))
 }
 
