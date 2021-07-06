@@ -5,5 +5,7 @@ export const shortenText = (text) => {
     return
   }
 
-  return text.length > maxLength ? text.substr(0, maxLength - 1) + '...' : text
+  return text.length > maxLength
+    ? text.substr(0, maxLength - 1) + '... (more)'
+    : text
 }
