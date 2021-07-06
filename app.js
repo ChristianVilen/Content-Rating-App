@@ -83,6 +83,4 @@ app.put('/', async (req, res) => {
 // Connect to db
 database.attach()
 
-app.listen(port, () => {
-  console.log(`Running on ${port} 🚀`)
-})
+app.listen(process.env.PORT || port)
