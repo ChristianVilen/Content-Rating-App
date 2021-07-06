@@ -4,3 +4,4 @@ data
 .idea
 client/node_modules
 .env
+client/build
