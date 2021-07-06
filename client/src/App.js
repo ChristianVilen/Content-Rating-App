@@ -5,7 +5,7 @@ import { getData, getTopTen } from './utils/requests'
 
 function App() {
   const [state, setState] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(5)
 
   useEffect(() => {
     getData(page).then((r) => setState(r))
@@ -14,8 +14,6 @@ function App() {
   const getTop = () => {
     getTopTen().then((r) => setState(r))
   }
-
-  console.log(state.length)
 
   const updateState = (e) =>
     setState(state.map((item) => (item.id === e.id ? { ...item, ...e } : item)))
@@ -74,7 +72,7 @@ function App() {
           </button>
         </div>
       )}
-      <div>
+      <div className="p-6">
         <button
           className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
           onClick={() => setPage(page + 50)}

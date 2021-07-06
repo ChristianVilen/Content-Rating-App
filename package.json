@@ -4,6 +4,7 @@
   "description": "We ask you to develop a small web application which allows a user to browse content and allows the user to provide a rating for a given piece of content (either image or video).",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
