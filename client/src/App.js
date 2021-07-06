@@ -29,7 +29,7 @@ function App() {
               getData(page).then((r) => setState(r))
               setIsTopTen(false)
             }}
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
+            className="text-sm lg:text-lg bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
           >
             Show all
           </button>
@@ -39,8 +39,8 @@ function App() {
             onClick={() => getTop()}
             className={
               isTopTen
-                ? 'bg-primary-dark text-sm hover:bg-secondary-dark text-white p-2 rounded ring-2 focus:ring-blue-600'
-                : 'bg-secondary-default text-sm hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600'
+                ? 'bg-primary-dark text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded ring-2 focus:ring-blue-600'
+                : 'bg-secondary-default text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600'
             }
           >
             Top 10

@@ -76,7 +76,7 @@ const ContentComponent = ({
       </>
       <>
         {isReview ? (
-          <div className="flex justify-evenly mt-4">
+          <div className="flex justify-evenly mt-4 mb-2">
             <button
               className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
               onClick={() => setOpenReview(!openReview)}
