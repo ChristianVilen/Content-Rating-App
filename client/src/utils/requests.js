@@ -15,6 +15,15 @@ export const getData = async (page) => {
     .catch((err) => console.error(err))
 }
 
+export const getTopTen = async () => {
+  return await axios
+    .get(`${apiUrl}top`)
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => console.error(err))
+}
+
 export const updateData = (data, review) => {
   const param = data._id
   const postData = {

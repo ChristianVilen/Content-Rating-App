@@ -1,7 +1,7 @@
 import './App.css'
 import ContentComponent from './components/contentComponent'
 import { useEffect, useState } from 'react'
-import { getData } from './utils/requests'
+import { getData, getTopTen } from './utils/requests'
 
 function App() {
   const [state, setState] = useState([])
@@ -11,15 +11,11 @@ function App() {
     getData(page).then((r) => setState(r))
   }, [page])
 
-  // todo: move to backend
   const getTop = () => {
-    const content = state.filter((item) => item.review)
-    content.sort((a, b) => {
-      return b.review.rating - a.review.rating
-    })
-
-    return setState(content.slice(0, 10))
+    getTopTen().then((r) => setState(r))
   }
+
+  console.log(state.length)
 
   const updateState = (e) =>
     setState(state.map((item) => (item.id === e.id ? { ...item, ...e } : item)))
@@ -41,7 +37,7 @@ function App() {
         <div className="ml-4">
           <button
             onClick={() => {
-              getData().then((r) => setState(r))
+              getData(page).then((r) => setState(r))
             }}
             className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
           >
@@ -81,7 +77,7 @@ function App() {
       <div>
         <button
           className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
-          onClick={() => setPage(page + 1)}
+          onClick={() => setPage(page + 50)}
         >
           Load more
         </button>

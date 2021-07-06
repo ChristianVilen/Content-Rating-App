@@ -15,6 +15,15 @@ app.options('*', cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // Routes
+app.get('/top', async (req, res) => {
+  try {
+    const data = await DataModel.find().sort({ 'review.rating': -1 }).limit(10)
+    res.json(data)
+  } catch (err) {
+    res.json({ message: err })
+  }
+})
+
 app.get('/', async (req, res) => {
   let limit = req.query.page
   try {
