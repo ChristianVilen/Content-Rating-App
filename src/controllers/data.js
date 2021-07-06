@@ -1,7 +1,7 @@
 const DataModel = require('../dataModel')
 
 exports.getAll = async (req, res) => {
-  let limit = req.query.page
+  let limit = req.query.limit
   try {
     const data = await DataModel.find().limit(limit * 10)
     res.json(data)

@@ -74,7 +74,7 @@ function App() {
       <div className="p-6">
         <button
           className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-1 rounded focus:ring-2 focus:ring-blue-600"
-          onClick={() => setPage(page + 50)}
+          onClick={() => setPage(page + 5)}
         >
           Load more
         </button>
