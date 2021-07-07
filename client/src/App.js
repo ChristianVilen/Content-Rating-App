@@ -1,15 +1,22 @@
 import ContentComponent from './components/contentComponent'
 import { useEffect, useState } from 'react'
-import { getData, getTopTen } from './utils/requests'
+import {
+  getCategories,
+  getCategory,
+  getData,
+  getTopTen,
+} from './utils/requests'
 
 function App() {
   const [state, setState] = useState([])
   const [page, setPage] = useState(5)
+  const [categories, setCategories] = useState([])
   const [isTopTen, setIsTopTen] = useState(false)
 
   useEffect(() => {
     setIsTopTen(false)
     getData(page).then((r) => setState(r))
+    getCategories().then((r) => setCategories(r))
   }, [page])
 
   const getTop = () => {
@@ -19,6 +26,10 @@ function App() {
 
   const updateState = (e) =>
     setState(state.map((item) => (item.id === e.id ? { ...item, ...e } : item)))
+
+  const categoryHandler = (category) => {
+    getCategory(category).then((r) => setState(r))
+  }
 
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
@@ -47,6 +58,31 @@ function App() {
               >
                 Top 10
               </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label
+                htmlFor="categories"
+                className="text-white text-sm text-center"
+              >
+                Topics
+              </label>
+            </div>
+            <div>
+              <select
+                name="topics"
+                id="topics"
+                onChange={(e) => categoryHandler(e.target.value)}
+                defaultValue="Hello"
+              >
+                <option defaultValue>Select</option>
+                {categories.map((item, key) => (
+                  <option key={key} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <>

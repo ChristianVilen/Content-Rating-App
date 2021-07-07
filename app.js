@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const topRoute = require('./src/routes/Top')
 const rootRoute = require('./src/routes/Root')
+const categoryRoute = require('./src/routes/Category')
 const deleteReviewRoute = require('./src/routes/DeleteReview')
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // Routes
 app.use('/top', topRoute)
+app.use('/categories', categoryRoute.routes)
 app.use('/delete', deleteReviewRoute)
 app.use('/', rootRoute)
 
