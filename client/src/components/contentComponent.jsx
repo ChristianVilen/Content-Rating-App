@@ -45,9 +45,8 @@ const ContentComponent = ({
           )}
         </div>
       </div>
-      <div className="flex justify-center">{showMedia(data)}</div>
-      <hr />
-      <div>
+      <div className="flex justify-center mt-2 mb-2">{showMedia(data)}</div>
+      <div className="pl-2 pr-2">
         <p
           className={
             'text-sm cursor-pointer hover:opacity-75 text-' + textColor

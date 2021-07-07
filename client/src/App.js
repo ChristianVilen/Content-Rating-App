@@ -22,47 +22,51 @@ function App() {
 
   return (
     <div className="flex flex-col bg-primary-dark min-h-screen items-center justify-center text-lg">
-      <div className="flex justify-center mt-10 mb-5">
-        <div className="mr-3">
-          <button
-            onClick={() => {
-              getData(page).then((r) => setState(r))
-              setIsTopTen(false)
-            }}
-            className="text-sm lg:text-lg bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
-          >
-            Show all
-          </button>
-        </div>
-        <div className="ml-3">
-          <button
-            onClick={() => getTop()}
-            className={
-              isTopTen
-                ? 'bg-primary-dark text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded ring-2 focus:ring-blue-600'
-                : 'bg-secondary-default text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600'
-            }
-          >
-            Top 10
-          </button>
-        </div>
-      </div>
       {state.length ? (
-        state.map((item, key) => {
-          return (
-            <div
-              className="w-11/12 md:w-8/12 lg:w-6/12 mt-3 mb-5 bg-primary-default bg-opacity-75 rounded p-2"
-              key={key}
-            >
-              <ContentComponent
-                data={item}
-                showButtons={true}
-                textColor={'white'}
-                updatedItem={updateState}
-              />
+        <>
+          <div className="flex justify-center mt-10 mb-5">
+            <div className="mr-3">
+              <button
+                onClick={() => {
+                  getData(page).then((r) => setState(r))
+                  setIsTopTen(false)
+                }}
+                className="text-sm lg:text-lg bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
+              >
+                Show all
+              </button>
             </div>
-          )
-        })
+            <div className="ml-3">
+              <button
+                onClick={() => getTop()}
+                className={
+                  isTopTen
+                    ? 'bg-primary-dark text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded ring-2 focus:ring-blue-600'
+                    : 'bg-secondary-default text-sm lg:text-lg hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600'
+                }
+              >
+                Top 10
+              </button>
+            </div>
+          </div>
+          <>
+            {state.map((item, key) => {
+              return (
+                <div
+                  className="w-11/12 md:w-8/12 lg:w-6/12 mt-3 mb-5 bg-primary-default bg-opacity-75 rounded p-2"
+                  key={key}
+                >
+                  <ContentComponent
+                    data={item}
+                    showButtons={true}
+                    textColor={'white'}
+                    updatedItem={updateState}
+                  />
+                </div>
+              )
+            })}
+          </>
+        </>
       ) : (
         <div>
           <p className="text-white">No data</p>
