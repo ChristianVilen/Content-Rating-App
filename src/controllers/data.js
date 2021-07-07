@@ -57,8 +57,12 @@ exports.putData = async (req, res) => {
 }
 
 exports.getTop = async (req, res) => {
+  const query = { review: { $exists: true } }
   try {
-    const data = await DataModel.find().sort({ 'review.rating': -1 }).limit(10)
+    const data = await DataModel.find(query)
+      .sort({ 'review.rating': -1 })
+      .limit(10)
+
     res.json(data)
   } catch (err) {
     res.json({ message: err })

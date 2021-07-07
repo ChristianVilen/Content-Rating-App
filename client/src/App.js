@@ -82,12 +82,16 @@ function App() {
         </div>
       )}
       <div className="p-6">
-        <button
-          className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
-          onClick={() => setPage(page + 5)}
-        >
-          Load more
-        </button>
+        {!isTopTen && state.length ? (
+          <button
+            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
+            onClick={() => setPage(page + 5)}
+          >
+            Load more
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )
