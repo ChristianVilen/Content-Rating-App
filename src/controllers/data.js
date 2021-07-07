@@ -56,6 +56,21 @@ exports.putData = async (req, res) => {
   }
 }
 
+exports.deleteReview = async (req, res) => {
+  try {
+    const updatedData = await DataModel.findByIdAndUpdate(
+      req.query.param,
+      {
+        $unset: { review: {} },
+      },
+      { new: true }
+    )
+    res.json(updatedData)
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
 exports.getTop = async (req, res) => {
   const query = { review: { $exists: true } }
   try {

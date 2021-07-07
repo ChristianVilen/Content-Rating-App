@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ReviewComponent from './reviewComponent'
 import { shortenText } from '../utils/helpers'
+import ThrashIcon from './thrashIcon'
+import { removeReview } from '../utils/requests'
 
 const ContentComponent = ({
   data,
@@ -25,8 +27,12 @@ const ContentComponent = ({
   }
 
   const closeModal = () => setOpenReview(!openReview)
-  const updateData = (event) => {
-    updatedItem(event)
+  const updateState = (event) => updatedItem(event)
+  const deleteReview = (data) => {
+    removeReview(data).then(() => {
+      delete data.review
+      updatedItem(data)
+    })
   }
 
   return (
@@ -66,7 +72,14 @@ const ContentComponent = ({
               <div className="flex-auto text-sm p-2">
                 {data.review.reviewText}
               </div>
-              <div className="flex-1 text-center">{data.review.rating}/10</div>
+              <div className="flex-1 text-right m-auto">
+                <p>{data.review.rating}/10</p>
+              </div>
+              <div className="flex-1 text-right m-auto pr-2">
+                <button onClick={() => deleteReview(data)}>
+                  <ThrashIcon props="h-4 w-auto" color="red" />
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -92,7 +105,7 @@ const ContentComponent = ({
           <ReviewComponent
             props={data}
             isOpen={closeModal}
-            updateStateData={updateData}
+            updateStateData={updateState}
           />
         ) : (
           <></>

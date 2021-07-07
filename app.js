@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const topRoute = require('./src/routes/Top')
 const rootRoute = require('./src/routes/Root')
+const deleteReviewRoute = require('./src/routes/DeleteReview')
 
 const app = express()
 const port = 8000
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // Routes
 app.use('/top', topRoute)
+app.use('/delete', deleteReviewRoute)
 app.use('/', rootRoute)
 
 // Connect to db

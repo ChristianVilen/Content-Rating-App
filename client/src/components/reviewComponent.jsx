@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { updateData } from '../utils/requests'
+import { addReview } from '../utils/requests'
 
 const ReviewComponent = ({ props, isOpen, updateStateData }) => {
   const [rating, setRating] = useState()
@@ -20,7 +20,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
       reviewText,
     }
 
-    updateData(props, review)
+    addReview(props, review)
       .then((r) => {
         setRequestResult({ success: 'success' })
         setReviewText('')

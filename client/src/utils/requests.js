@@ -25,7 +25,7 @@ export const getTopTen = async () => {
     .catch((err) => console.error(err))
 }
 
-export const updateData = (data, review) => {
+export const addReview = (data, review) => {
   const param = data._id
   const postData = {
     ...data,
@@ -33,6 +33,22 @@ export const updateData = (data, review) => {
   }
   return axios
     .put(apiUrl, postData, {
+      params: {
+        param,
+      },
+    })
+    .then((r) => r.data)
+    .catch((e) => console.error('from rew', e))
+}
+
+export const removeReview = (data) => {
+  const param = data._id
+  const postData = {
+    data,
+  }
+
+  return axios
+    .put(`${apiUrl}delete`, postData, {
       params: {
         param,
       },
