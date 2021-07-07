@@ -14,9 +14,12 @@ exports.postData = async (req, res) => {
   const data = new DataModel({
     id: req.body.id,
     mediaType: req.body.mediaType,
+    source: req.body.source,
     title: req.body.title,
     description: req.body.description,
-    source: req.body.source,
+    length: req.body.length,
+    aspectRatio: req.body.aspectRatio,
+    topic: req.body.topic,
     contentUrl: req.body.contentUrl,
     previewUrl: req.body.previewUrl,
   })
@@ -37,9 +40,12 @@ exports.putData = async (req, res) => {
         $set: {
           id: req.body.id,
           mediaType: req.body.mediaType,
+          source: req.body.source,
           title: req.body.title,
           description: req.body.description,
-          source: req.body.source,
+          length: req.body.length,
+          aspectRatio: req.body.aspectRatio,
+          topic: req.body.topic,
           contentUrl: req.body.contentUrl,
           previewUrl: req.body.previewUrl,
           review: {

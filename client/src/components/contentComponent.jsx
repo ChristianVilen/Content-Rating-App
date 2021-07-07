@@ -40,6 +40,9 @@ const ContentComponent = ({
       <div className="flex justify-between">
         <h1 className={'text-lg font-semi-bold text-' + textColor}>
           {data.title}
+          <p className="text-sm text-white">
+            <i>Topic:</i> {data.topic ?? 'No topic provided'}
+          </p>
         </h1>
         <div>
           {data.review ? (

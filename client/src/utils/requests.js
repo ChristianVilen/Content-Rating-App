@@ -56,3 +56,17 @@ export const removeReview = (data) => {
     .then((r) => r.data)
     .catch((e) => console.error('from rew', e))
 }
+
+export const getCategories = () => {
+  return axios
+    .get(`${apiUrl}categories`)
+    .then((r) => r.data)
+    .catch((e) => console.error(e))
+}
+
+export const getCategory = (category) => {
+  return axios
+    .get(`${apiUrl}categories/${category}`)
+    .then((r) => r.data)
+    .catch((e) => console.error(e))
+}

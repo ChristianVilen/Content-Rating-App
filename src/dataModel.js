@@ -4,9 +4,12 @@ const mongoose = require('mongoose')
 const DataSchema = new mongoose.Schema({
   id: String,
   mediaType: String,
+  source: String,
   title: String,
   description: String,
-  source: String,
+  length: String,
+  aspectRatio: String,
+  topic: String,
   contentUrl: String,
   previewUrl: String,
   review: {
