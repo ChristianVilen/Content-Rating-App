@@ -63,11 +63,14 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
   return (
     <div className="flex justify-center mt-5 items-center outline-none focus:outline-none">
       <div className="flex flex-col items-center w-full bg-primary-light shadow-md hover:shadow-lg rounded-2xl">
-        <div className="flex pt-5 pb-5">
-          <div className="flex-auto text-left text-white mr-5">
-            <div>
-              <label htmlFor="ratingSlider">Review 1-10</label>
-            </div>
+        <div>
+          <h4 className="text-white pt-3">Review</h4>
+        </div>
+        <div className="flex flex-col lg:flex-row pt-2 pb-5 w-8/12 md:w-auto">
+          <div className="text-center pb-3 lg:text-left text-white lg:mr-5">
+            <label htmlFor="ratingSlider" className="text-sm">
+              Give a rating from 1 to 10
+            </label>
             <div>
               <input
                 className="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128"
@@ -86,7 +89,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
               {rating}
             </div>
           </div>
-          <div className="flex-auto text-right ml-5 sm:w-auto lg:w-80">
+          <div className="text-center lg:text-right lg:ml-5 w-auto md:w-auto lg:w-80">
             <div>
               <textarea
                 className="text-xs w-full bg-gray-200 border rounded"
