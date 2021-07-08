@@ -103,33 +103,35 @@ function App() {
               )
             })}
           </>
+          <div className="p-6">
+            {!isTopTen && state.length ? (
+              <button
+                className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
+                onClick={() => setPage(page + 5)}
+              >
+                Load more
+              </button>
+            ) : (
+              <></>
+            )}
+          </div>
         </>
       ) : (
         <div>
-          <p className="text-white">No data</p>
-          <button
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
-            onClick={() => {
-              getData(5).then((r) => setState(r))
-              setIsTopTen(false)
-            }}
-          >
-            Reload
-          </button>
+          <div className="m-8 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-10 w-10" />
+          <div className="flex justify-center">
+            <button
+              className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
+              onClick={() => {
+                getData(5).then((r) => setState(r))
+                setIsTopTen(false)
+              }}
+            >
+              Reload?
+            </button>
+          </div>
         </div>
       )}
-      <div className="p-6">
-        {!isTopTen && state.length ? (
-          <button
-            className="text-sm bg-secondary-default hover:bg-secondary-dark text-white p-2 rounded focus:ring-2 focus:ring-blue-600"
-            onClick={() => setPage(page + 5)}
-          >
-            Load more
-          </button>
-        ) : (
-          <></>
-        )}
-      </div>
     </div>
   )
 }
