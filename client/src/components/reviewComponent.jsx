@@ -9,6 +9,7 @@ const ReviewComponent = ({ props, isOpen, updateStateData }) => {
   useEffect(() => {
     if (props.review !== undefined) {
       setRating(props.review.rating)
+      setReviewText(props.review.reviewText)
     } else {
       setRating(5)
     }
