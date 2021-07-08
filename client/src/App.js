@@ -24,6 +24,7 @@ function App() {
     setIsTopTen(true)
   }
 
+  // Loop over state to find modified item. Spread the current item in state and compare diffs. Update changed values.
   const updateState = (e) =>
     setState(state.map((item) => (item.id === e.id ? { ...item, ...e } : item)))
 

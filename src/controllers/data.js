@@ -67,6 +67,7 @@ exports.deleteReview = async (req, res) => {
     const updatedData = await DataModel.findByIdAndUpdate(
       req.query.param,
       {
+        // Remove review property
         $unset: { review: {} },
       },
       { new: true }

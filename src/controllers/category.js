@@ -3,14 +3,10 @@ const DataModel = require('../dataModel')
 exports.getCategories = async (req, res) => {
   try {
     const data = await DataModel.find().sort('topic')
-    const unique = [
-      ...new Set(
-        data.map((item) => {
-          return item.topic
-        })
-      ),
-    ]
-    res.json(unique)
+    // Find all different topics and store in map
+    const unique = [...new Set(data.map((item) => item.topic))]
+    // Remove nulls and undefined values
+    res.json(unique.filter((i) => i != null))
   } catch (err) {
     res.json({ message: err })
   }

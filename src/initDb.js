@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 module.exports = {
   attach() {
@@ -6,9 +6,9 @@ module.exports = {
       .connect(process.env.DB_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
       })
       .then(() => console.log('Linked to DB'))
-      .catch(err => console.error(err));
-  }
-};
+      .catch((err) => console.error(err))
+  },
+}
