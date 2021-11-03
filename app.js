@@ -26,4 +26,4 @@ app.use('/', rootRoute)
 // Connect to db
 database.attach()
 
-app.listen(process.env.PORT || port)
+app.listen(port)
